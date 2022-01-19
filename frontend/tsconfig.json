@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",//ñ necessita .. para caminho das pastas
     "target": "es5",
     "lib": [
       "dom",
