@@ -1,9 +1,13 @@
 package com.braincustom.dsmovie.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +21,11 @@ public class Movie {
 	private Double score;
 	private Integer count;
 	private String image;
+	
+	//no objeto movie, fazendo uma referência para todo conjunto de avaliações do filme
+	//com a coleção Set<>
+	@OneToMany(mappedBy = "id.movie")//Score.ScorePK
+	private Set<Score> scores = new HashSet<>();
 	
 	public Movie() {
 	}
@@ -69,5 +78,10 @@ public class Movie {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	//método para acessar a coleção de scores de um dado filme
+	public Set<Score> getScores() {
+		return scores;
 	}
 }
